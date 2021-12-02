@@ -7,6 +7,8 @@ Created on Fri Aug 27 17:37:29 2021
 
 import openpyxl, csv
 
+picture = input("Enter File name of excel template: ")
+
 letters = []
 for i in range(65, 91):
     letters.append(chr(i))
@@ -21,7 +23,7 @@ for i in range(1, 49):
         plate1536.append(letter + str(i))
 
 
-wb = openpyxl.load_workbook(filename = "template.xlsx")
+wb = openpyxl.load_workbook(filename = picture)
 
 ws = wb.active
 
@@ -40,7 +42,7 @@ for s, d in zip(vals, plate1536):
         transfers.append([source_dict[s], d, 5])
 
 
-csvFile = "Painting.csv"
+csvFile = picture[0:-5] + "_ECHO.csv"
 with open(csvFile, "w", newline="") as outputcsv:
     echoWriter = csv.writer(outputcsv, delimiter=",")
     for t in transfers:
